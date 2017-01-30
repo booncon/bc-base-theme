@@ -1,0 +1,32 @@
+{% extends 'PageSection/PageSection.twig' %}
+
+{% block PageSectionId %}
+id="{{'js-' ~ section.section_id}}"
+{% endblock %}
+
+{% block PageSectionData %}
+data-scrollTarget="{{section.section_id}}"
+{% endblock %}
+
+{% block PageSection %}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-lg-6 col-xl-5">
+        <img class="img-fluid" src="{{TimberImage(section.image).src('image-800x800')}}" alt="{{section.image.alt ? section.image.alt : 'contact-us-image'}}"/>
+      </div>
+      <div class="col-xs-12 col-md-4 col-lg-3">
+        <div class="bg-pink-lighter contact-us-content">
+          <h2>{{section.title}}</h2>
+          {% for contact in section.contacts %}
+            <div class="contact-person">
+              <div><span>{{contact.name}}</span></div>
+              <div class="contact-title"><span>{{contact.title}}</span></div>
+              <div><span>{{contact.phone}}</span></div>
+              <div><span>{{contact.email}}</span></div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

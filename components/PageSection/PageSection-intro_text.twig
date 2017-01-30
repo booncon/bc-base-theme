@@ -1,0 +1,23 @@
+{% extends 'PageSection/PageSection.twig' %}
+
+{% block PageSection %}
+  <div class="container">
+    {% if section.intro_title %}
+      <h2>{{section.intro_title}}</h2>
+    {% endif %}
+    <div class="row">
+      <div class="col-xs-12 col-md-8">
+        <div class="description-text">
+        {{section.intro_text}}
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <h3>Location</h3>
+        <div class="description-text">
+        {{section.intro_location}}
+        </div>
+        <div id="js-visit-us-gg-map" class="visit-us-map-wrapper" data-lat="{{section.intro_map.lat}}" data-lng="{{section.intro_map.lng}}" data-marker="{{section.intro_map_marker}}"></div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'PageSection/PageSection.twig' %}
+
+{% block PageSectionId %}
+id="{{'js-' ~ section.section_id}}"
+{% endblock %}
+
+{% block PageSectionData %}
+data-scrollTarget="{{section.section_id}}"
+{% endblock %}
+
+{% block PageSection %}
+  <div class="container">
+    {% if section.title %}
+      <h2>{{section.title}}</h2>
+    {% endif %}
+
+    <div class="case-study-wrapper hidden-lg-down">
+      {% for case_study in case_studies %}
+        {% set post_tags = function('get_the_terms', case_study.id, 'px_case_study_tag')%}
+        {% if loop.index % 4 == 0 or (loop.index - 1) % 4 == 0 %}
+        <div class="case-study-item case-study-item-large bg-gray-light">
+          <div class="case-study-item-desc case-study-item-desc-large ">
+            <div class="inner-desc">
+              <h3>{{case_study.title}}</h3>
+              <div>
+                {% for tag in post_tags %}
+                  {% if loop.last %}
+                    <span class="tag-name">{{tag.name}}</span>
+                  {% else %}
+                    <span class="tag-name">{{tag.name}} | </span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <div class="case-study-desc-content">
+                {{case_study.post_content}}
+              </div>
+            </div>
+          </div>
+          <div class="case-study-item-img case-study-item-img-large">
+            {% if case_study.thumbnail.src %}
+              <img class="img-fluid" src="{{TimberImage(case_study.thumbnail).src('image-700x800')}}" alt="{{post.title}}"/>
+            {% endif %}
+          </div>
+        </div>
+        {% else %}
+        <div class="case-study-item case-study-item-small bg-gray-light">
+          <div class="case-study-item-desc case-study-item-desc-small">
+            <div class="inner-desc">
+              <h3>{{case_study.title}}</h3>
+              <div>
+                {% for tag in post_tags %}
+                  {% if loop.last %}
+                    <span class="tag-name">{{tag.name}}</span>
+                  {% else %}
+                    <span class="tag-name">{{tag.name}} | </span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <div class="case-study-desc-content">
+                {{case_study.post_content}}
+              </div>
+            </div>
+          </div>
+          <div class="case-study-item-img case-study-item-img-small">
+            {% if case_study.thumbnail.src %}
+              <img class="img-fluid" src="{{TimberImage(case_study.thumbnail).src('image-350x800')}}" alt="{{post.title}}"/>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="js-slick-carousel hidden-xl-up">
+      {% for case_study in case_studies %}
+        {% set post_tags = function('get_the_terms', case_study.id, 'px_case_study_tag')%}
+        <div class="case-study-slide">
+          <div>
+            {% if case_study.thumbnail.src %}
+              <img class="img-fluid" src="{{TimberImage(case_study.thumbnail).src('image-800x500')}}" alt="{{post.title}}"/>
+            {% endif %}
+          </div>
+          <div class="case-study-slide-desc">
+            <h3>{{case_study.title}}</h3>
+            <div>
+              {% for tag in post_tags %}
+                <span class="tag-name">{{tag.name}}</span>
+              {% endfor %}
+            </div>
+            <div>
+              {{case_study.post_content}}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+{% endblock %}

@@ -1,0 +1,3 @@
+{% for section in post.get_field('px_content_front_page') %}
+  {% include 'PageSection/PageSection-'~section.acf_fc_layout~'.twig' ignore missing %}
+{% endfor %}

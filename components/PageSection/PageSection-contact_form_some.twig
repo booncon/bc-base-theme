@@ -1,0 +1,33 @@
+{% extends 'PageSection/PageSection.twig' %}
+
+{% block PageSection %}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-lg-10 offset-lg-1">
+      <div class="row">
+        {% if section.contact_form_short_code %}
+          <div class="col-xs-12 col-lg-8">
+            <div class="contact-form-wrapper bg-gray-light">
+              {% if section.title %}
+                <h2 class="no-margin-top">{{section.title}}</h2>
+              {% endif %}
+              {% if section.text %}
+                <div>{{section.text}}</div>
+              {% endif %}
+              {% filter shortcodes %}
+                {{section.contact_form_short_code}}
+              {% endfilter %}
+            </div>
+          </div>
+        {% endif %}
+        {% if section.show_social_media_sharing %}
+          <div class="col-xs-12 col-lg-3 offset-lg-1">
+            {{social_media_share}}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

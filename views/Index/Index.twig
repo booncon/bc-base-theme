@@ -1,0 +1,14 @@
+{% extends "views/Base/Base.twig" %}
+
+{% block content %}
+
+	{% if title %}
+		<h1>{{ title }}</h1>
+	{% endif %}
+
+	{% for post in posts %}
+		{% include ['components/Teaser/Teaser-' ~ post.post_type ~ '.twig', 'components/Teaser/Teaser.twig'] %}
+	{% endfor %}
+
+	{% include ['components/IndexPagination/IndexPagination-' ~ post.post_type ~ '.twig', 'components/IndexPagination/IndexPagination.twig'] %}
+{% endblock %}

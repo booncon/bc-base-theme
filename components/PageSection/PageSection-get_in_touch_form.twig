@@ -1,0 +1,29 @@
+{% extends 'PageSection/PageSection.twig' %}
+
+{% block PageSection %}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-lg-9 offset-lg-3 col-xl-6 offset-xl-6">
+        <div class="contact-form-wrapper bg-gray-light">
+          {% if section.title %}
+            <h2>{{section.title}}</h2>
+          {% endif %}
+
+          {% if section.text %}
+            <div class="contact-form-text">
+              {{section.text}}
+            </div>
+          {% endif %}
+
+          {% if section.contact_form_short_code %}
+            <div class="front-page-contact-form bg-gray-light">
+              {% filter shortcodes %}
+                {{section.contact_form_short_code}}
+              {% endfilter %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

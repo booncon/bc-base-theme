@@ -1,0 +1,18 @@
+{% extends 'PageSection/PageSection.twig' %}
+
+{% block PageSection %}
+<div class="banner-bg" style="background-image: url({{ section.background_image ? TimberImage(section.background_image).src('banner-image') : '' }})">
+  <div class="container">
+    <div class="banner-description-wrapper">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-lg-6">
+          <h2 class="banner-description-text">
+          {{site.description}}
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

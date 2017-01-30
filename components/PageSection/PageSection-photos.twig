@@ -1,0 +1,19 @@
+{% extends 'PageSection/PageSection.twig' %}
+
+{% block PageSection %}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-lg-9 offset-lg-3">
+        <div class="partners-content bg-gray-light">
+          <div class="row">
+            {% for photo in section.photos %}
+              <div class="col-xs-12">
+                <img class="img-fluid partner-logo" src="{{TimberImage(photo).src('slider-image')}}" alt="{{photo.alt ? photo.alt : 'friend-image'}}"/>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'PageSection/PageSection.twig' %}
+
+{% block PageSection %}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-lg-9 offset-lg-3">
+        <div class="partners-content bg-gray-light">
+          <h2>{{section.title}}</h2>
+          <div class="row">
+            {% for friend in section.friends %}
+              <div class="col-xs-6 col-sm-4 col-lg-2">
+                {% set friend_img = friend.image %}
+                {% if friend_img.width > friend_img.height and friend_img.width > friend_img.height * 2 %}
+                  {% set sizing_class = 'img-wide' %}
+                {% elseif friend_img.width < friend_img.height and friend_img.width * 2 < friend_img.height %}
+                  {% set sizing_class = 'img-tall' %}
+                {% elseif friend_img.width == friend_img.height %}
+                  {% set sizing_class = 'img-square' %}
+                {% else %}
+                  {% set sizing_class = '' %}
+                {% endif %}
+                <a href="{{friend.link}}" target="_blank" class="partner-logo-wrapper">
+                  <img class="img-fluid partner-logo {{sizing_class}}" src="{{TimberImage(friend).src}}" alt="{{friend_img.alt ? friend_img.alt : 'friend-image'}}"/>
+                  {{friend.name}}
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
